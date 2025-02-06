@@ -22,16 +22,18 @@ const properties =(number)=>{
 app.get('/api/classify-number', async(req,res)=>{
 
     try{
-    const number = parseInt(req.query.number)
-    if(number && number * -1 <0){
+    const string = req.query.number
+    if(string){
+        number = parseInt(string) 
+        if(number){
     const response = await fetch(`http://numbersapi.com/${number}/math?json`)
     const data = await response.json()
     jsonText = data.text
     const resData = {"number": number,"is_prime" : is_prime(number), "is_perfect": perfect(number), "properties": properties(number),"digit_sum": digit_sum(number), "fun_fact": jsonText }
     res.status(200).json(resData)
     }else{
-        res.status(400).json({"number": number * -1 > 0 ?"negative number": "alphabet", "err": true})
-    }
+        res.status(400).json({"number": string, "err": true})
+    }}
     }catch(err){
         console.log(err)
     }

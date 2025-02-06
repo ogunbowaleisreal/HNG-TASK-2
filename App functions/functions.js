@@ -1,5 +1,8 @@
 const is_prime = (number)=>{
     const range = []
+    if(number * -1 >0){
+        return false
+    }
     if(number == 1){
         return false
     }
