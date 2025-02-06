@@ -31,7 +31,11 @@ const even = (number)=>{
 }
 
 const is_armstrong = (number)=>{
-    const num = String(number);
+    let new_num = 0
+    if(number * -1 >0){
+        new_num = number * -1
+        }
+    let num = String(new_num);
     let sum = 0
     for(let i = 0; i< num.length ; i++){
         sum = sum + (parseInt(num[i])**3)
