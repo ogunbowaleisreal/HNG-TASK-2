@@ -27,7 +27,7 @@ app.get('/api/classify-number', async (req, res) => {
   try {
     const { number } = req.query;
     if (!number || isNaN(parseInt(number))) {
-      return res.status(400).json({ error: 'Invalid number' });
+      return res.status(400).json({ error: 'true', "number": number });
     }
     const num = parseInt(number);
     const response = await fetch(`http://numbersapi.com/${num}/math?json`);
@@ -43,8 +43,7 @@ app.get('/api/classify-number', async (req, res) => {
     };
     res.status(200).json(resData);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(400).json({ error: 'Internal Server Error' });
   }
 });
 
