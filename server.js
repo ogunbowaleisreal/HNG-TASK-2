@@ -32,7 +32,7 @@ app.get('/api/classify-number', async(req,res)=>{
     const resData = {"number": number,"is_prime" : is_prime(number), "is_perfect": perfect(number), "properties": properties(number),"digit_sum": digit_sum(number), "fun_fact": jsonText }
     res.status(200).json(resData)
     }else{
-        res.status(400).json({"number": string, "err": true})
+        res.status(400).json({"number": string, "error": true})
     }}
     }catch(err){
         console.log(err)
