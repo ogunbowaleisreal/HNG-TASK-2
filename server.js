@@ -6,9 +6,6 @@ const {is_armstrong, perfect, even, digit_sum, is_prime } = require('./App funct
 
 app.use(cors())
 
-const armstrong = is_armstrong(123)
-console.log(armstrong)
-
 const properties =(number)=>{
     const evenorOdd = even(number) ? true : false
     const armstrong = is_armstrong(number)
