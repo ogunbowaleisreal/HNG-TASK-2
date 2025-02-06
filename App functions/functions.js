@@ -30,26 +30,30 @@ const even = (number)=>{
     }
 }
 
-const is_armstrong = (number)=>{
-    let new_num = 0
-    if(number * -1 >0){
-        new_num = number * -1
+    function is_armstrong(num) {
+        const numStr = Math.abs(num).toString();
+        const numDigits = numStr.length;
+        let sum = 0;
+      
+        for (let i = 0; i < numDigits; i++) {
+          const digit = parseInt(numStr[i]);
+          sum += Math.pow(digit, numDigits);
         }
-    let num = String(new_num);
-    let sum = 0
-    for(let i = 0; i< num.length ; i++){
-        sum = sum + (parseInt(num[i])**3)
-    }
-    return sum == num 
+      
+        return sum === Math.abs(num);
+      
 }
 
-const digit_sum = (number)=>{
-    let sum = 0
-    const num_string = String(number)
-    for(let i =0 ; i< num_string.length; i++){
-        sum += parseInt(num_string[i])
+const digit_sum = (num)=>{
+    num = Math.abs(num);
+    let sum = 0;
+  
+    while (num > 0) {
+      sum += num % 10; 
+      num = Math.floor(num / 10); 
     }
-    return sum 
+  
+    return sum;
 }
 
 const perfect = (number)=>{
