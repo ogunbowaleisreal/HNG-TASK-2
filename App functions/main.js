@@ -20,7 +20,7 @@ const main =  async (req, res) => {
       };
       res.status(200).json(resData);
     } catch (err) {
-      res.status(400).json({ error: 'Internal Server Error' });
+      res.status(400).json({ error: 'true', "number": number });
     }
   }
 
