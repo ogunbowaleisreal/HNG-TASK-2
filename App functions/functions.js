@@ -1,5 +1,11 @@
 const is_prime = (number)=>{
     const range = []
+    if(number == 1){
+        return false
+    }
+    if (number == 2){
+        return true
+    }
     for(let i = 2 ; i< number ; i++){
         range.push(i)
     }
@@ -39,7 +45,6 @@ const digit_sum = (number)=>{
     return sum 
 }
 
-
 const perfect = (number)=>{
     const factors = []
     let sum = 0
@@ -55,4 +60,4 @@ const perfect = (number)=>{
     
 }
 
-modules.exports = {is_prime, is_armstrong, even, perfect, digit_sum}
+module.exports = {is_prime, is_armstrong, even, perfect, digit_sum}

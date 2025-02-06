@@ -19,28 +19,22 @@ const properties =(number)=>{
     }
 }
 
-app.get('/api/classify-number:number', async(req,res)=>{
+app.get('/api/classify-number', async(req,res)=>{
+
     try{
-    const number = parseFloat(req.params.number)
+    const number = parseInt(req.query.number)
     if(number){
     const response = await fetch(`http://numbersapi.com/${number}/math?json`)
     const data = await response.json()
     jsonText = data.text
-    console.log(jsonText)
-    const result =is_prime(41)
-    const armstrong = is_armstrong(51)
-    console.log(result)
-    console.log(armstrong)
-    const resData = {"is_prime" : result, "properties": properties(number), "is_perfect": perfect(number), "digit_sum": digit_sum(number), "funfact": jsonText }
-
+    const resData = {"number": number,"is_prime" : is_prime(number), "is_perfect": perfect(number), "properties": properties(number),"digit_sum": digit_sum(number), "fun_fact": jsonText }
     res.status(200).json(resData)
     }else{
-        res.status(403).json({"message":"BADREQUEST", "err": 403})
+        res.status(400).json({"message":"BADREQUEST", "err": true})
     }
     }catch(err){
         console.log(err)
     }
-
 })
 
 app.listen(PORT, ()=>{
