@@ -27,7 +27,7 @@ app.get('/api/classify-number', async (req, res) => {
   try {
     const { number } = req.query;
     if (!number || isNaN(parseInt(number))) {
-      return res.status(400).json({ error: 'true', "number": number });
+      return res.status(400).json({ "number": number,error: 'true'});
     }
     const num = parseInt(number);
     const response = await fetch(`http://numbersapi.com/${num}/math?json`);
