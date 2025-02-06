@@ -18,14 +18,15 @@ app.get('/api/classify-number', async (req, res) => {
     }
     const num = parseInt(number);
     const response = await fetch(`http://numbersapi.com/${num}/math?json`);
-    const data = await response.json().text;
+    const data = await response.json();
+    const jsontext = data.text
     const resData = {
       number: num,
       is_prime: is_prime(num),
       is_perfect: perfect(num),
       properties: properties(num),
       digit_sum: digit_sum(num),
-      fun_fact: data,
+      fun_fact: jsontext,
     };
     res.status(200).json(resData);
   } catch (err) {
