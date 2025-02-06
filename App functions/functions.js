@@ -71,4 +71,17 @@ const perfect = (number)=>{
     
 }
 
-module.exports = {is_prime, is_armstrong, even, perfect, digit_sum}
+const properties = (number) => {
+    const evenorOdd = even(number) ? true : false;
+    const armstrong = is_armstrong(number);
+    if (armstrong && evenorOdd) {
+      return ['armstrong', 'even'];
+    }
+    if (armstrong) {
+      return ['armstrong', 'odd'];
+    } else {
+      return evenorOdd ? ['even'] : ['odd'];
+    }
+  };
+
+module.exports = {is_prime, is_armstrong, even, perfect, digit_sum, properties}

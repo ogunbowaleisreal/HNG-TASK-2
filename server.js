@@ -4,24 +4,11 @@ const app = express();
 const PORT = process.env.PORT || 3500;
 const cors = require('cors');
 const compression = require('compression');
-const { is_armstrong, perfect, even, digit_sum, is_prime } = require('./App functions/functions');
+const { is_armstrong, perfect, even, digit_sum, is_prime, properties } = require('./App functions/functions');
 
 app.use(cors());
 app.use(compression());
 app.use(express.json());
-
-const properties = (number) => {
-  const evenorOdd = even(number) ? true : false;
-  const armstrong = is_armstrong(number);
-  if (armstrong && evenorOdd) {
-    return ['armstrong', 'even'];
-  }
-  if (armstrong) {
-    return ['armstrong', 'odd'];
-  } else {
-    return evenorOdd ? ['even'] : ['odd'];
-  }
-};
 
 app.get('/api/classify-number', async (req, res) => {
   try {
@@ -31,15 +18,14 @@ app.get('/api/classify-number', async (req, res) => {
     }
     const num = parseInt(number);
     const response = await fetch(`http://numbersapi.com/${num}/math?json`);
-    const data = await response.json();
-    const jsonText = data.text;
+    const data = await response.json().text;
     const resData = {
       number: num,
       is_prime: is_prime(num),
       is_perfect: perfect(num),
       properties: properties(num),
       digit_sum: digit_sum(num),
-      fun_fact: jsonText,
+      fun_fact: data,
     };
     res.status(200).json(resData);
   } catch (err) {
