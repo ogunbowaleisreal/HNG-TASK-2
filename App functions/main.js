@@ -10,7 +10,7 @@ function hasDecimalPoint(str) {
 const main =  async (req, res) => {
     try {
       const { number } = req.query;
-      if (!number || isNaN(parseInt(number)) || hasDecimalPoint(number) ) {
+      if (!number || isNaN(parseInt(number)) || hasDecimalPoint(number) || typeof(number)!= 'number') {
         return res.status(400).json({ "number": number,error: true});
       }
       const num = parseInt(number);
