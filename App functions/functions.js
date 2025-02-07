@@ -31,9 +31,6 @@ const even = (number)=>{
 }
 
     function is_armstrong(num) {
-        if(num * -1> 0){
-            return false
-        }
         const numStr = Math.abs(num).toString();
         const numDigits = numStr.length;
         let sum = 0;
