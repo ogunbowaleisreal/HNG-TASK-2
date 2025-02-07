@@ -44,17 +44,12 @@ const even = (number)=>{
       
 }
 
-const digit_sum = (num)=>{
-    num = Math.abs(num);
-    let sum = 0;
+function digit_sum(num) {
+    const absNum = Math.abs(num);
+    const sum = absNum.toString().split('').reduce((acc, digit) => acc + parseInt(digit), 0);
+    return num < 0 ? -sum : sum;
+  }
   
-    while (num > 0) {
-      sum += num % 10; 
-      num = Math.floor(num / 10); 
-    }
-  
-    return sum;
-}
 
 const perfect = (number)=>{
     const factors = []
