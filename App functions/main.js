@@ -1,9 +1,14 @@
 const functions = require('../App functions/functions')
 const properties = require('./properties')
+
+function isFloat(str) {
+  return !isNaN(parseFloat(str));
+}
+
 const main =  async (req, res) => {
     try {
       const { number } = req.query;
-      if (!number || isNaN(parseInt(number))) {
+      if (!number || isNaN(parseInt(number)) || isFloat(number) ) {
         return res.status(400).json({ "number": number,error: true});
       }
       const num = parseInt(number);
