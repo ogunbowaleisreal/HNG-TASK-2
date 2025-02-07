@@ -1,14 +1,16 @@
 const functions = require('../App functions/functions')
 const properties = require('./properties')
 
-function isFloat(str) {
-  return !isNaN(parseFloat(str));
+function hasDecimalPoint(str) {
+  const num = parseFloat(str);
+  return !isNaN(num) && num % 1 !== 0;
 }
+
 
 const main =  async (req, res) => {
     try {
       const { number } = req.query;
-      if (!number || isNaN(parseInt(number)) || isFloat(number) ) {
+      if (!number || isNaN(parseInt(number)) || hasDecimalPoint(number) ) {
         return res.status(400).json({ "number": number,error: true});
       }
       const num = parseInt(number);
